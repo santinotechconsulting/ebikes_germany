@@ -1,0 +1,6 @@
+{
+  "name": "E-MOTION BIKES",
+  "description": "Premium E-Bike Online-Shop für Deutschland: City, Trekking, E-Mountainbikes, Cargo, Falt- und SUV E-Bikes mit deutscher Fachberatung.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

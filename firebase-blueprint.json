@@ -1,0 +1,357 @@
+{
+  "entities": {
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global storefront configuration, brand identity, contact details, analytics IDs, and legal page templates.",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "tagline": { "type": "string", "maxLength": 160 },
+        "announcementText": { "type": "string", "maxLength": 200 },
+        "heroHeadline": { "type": "string", "maxLength": 160 },
+        "heroSubtitle": { "type": "string", "maxLength": 400 },
+        "heroBannerImage": { "type": "string", "maxLength": 500 },
+        "contactEmail": { "type": "string", "maxLength": 120 },
+        "contactPhone": { "type": "string", "maxLength": 40 },
+        "whatsappNumber": { "type": "string", "maxLength": 40 },
+        "streetAddress": { "type": "string", "maxLength": 160 },
+        "postalCode": { "type": "string", "maxLength": 20 },
+        "city": { "type": "string", "maxLength": 80 },
+        "businessHours": { "type": "string", "maxLength": 160 },
+        "freeShippingThresholdEur": { "type": "number" },
+        "standardShippingEur": { "type": "number" },
+        "ga4MeasurementId": { "type": "string", "maxLength": 40 },
+        "gtmContainerId": { "type": "string", "maxLength": 40 },
+        "metaPixelId": { "type": "string", "maxLength": 40 },
+        "paymentMethods": { "type": "array" },
+        "aboutTitle": { "type": "string", "maxLength": 160 },
+        "aboutStory": { "type": "string", "maxLength": 4000 },
+        "footerNote": { "type": "string", "maxLength": 300 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["brandName", "tagline", "contactEmail", "city"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "E-Bike product category with SEO metadata.",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "minLength": 2, "maxLength": 80, "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 500 },
+        "image": { "type": "string", "maxLength": 500 },
+        "seoTitle": { "type": "string", "maxLength": 120 },
+        "seoDescription": { "type": "string", "maxLength": 220 },
+        "focusKeyword": { "type": "string", "maxLength": 80 },
+        "sortOrder": { "type": "number" }
+      },
+      "required": ["slug", "name", "description"]
+    },
+    "Brand": {
+      "title": "Brand",
+      "description": "E-Bike manufacturer or partner brand.",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "minLength": 2, "maxLength": 80, "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "country": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 400 }
+      },
+      "required": ["slug", "name", "country"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Electric bicycle product record including technical specs, pricing, inventory, compliance, and SEO metadata.",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "gtin": { "type": "string", "maxLength": 40 },
+        "slug": { "type": "string", "minLength": 2, "maxLength": 120, "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "brand": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "categoryId": { "type": "string", "minLength": 2, "maxLength": 80, "pattern": "^[a-zA-Z0-9_-]+$" },
+        "categoryName": { "type": "string", "maxLength": 80 },
+        "priceEur": { "type": "number" },
+        "previousPriceEur": { "type": "number" },
+        "shortDescription": { "type": "string", "maxLength": 320 },
+        "description": { "type": "string", "maxLength": 4000 },
+        "images": { "type": "array" },
+        "colors": { "type": "array" },
+        "frameSizes": { "type": "array" },
+        "frameType": { "type": "string", "enum": ["Diamant", "Trapez", "Tiefeinsteiger", "Fully", "Kompakt", "Cargo"] },
+        "motorBrand": { "type": "string", "maxLength": 60 },
+        "motorModel": { "type": "string", "maxLength": 100 },
+        "motorPowerW": { "type": "number" },
+        "motorTorqueNm": { "type": "number" },
+        "maxAssistedSpeedKmh": { "type": "number" },
+        "isSPedelec": { "type": "boolean" },
+        "batteryWh": { "type": "number" },
+        "chargingTimeHours": { "type": "number" },
+        "rangeKmMin": { "type": "number" },
+        "rangeKmMax": { "type": "number" },
+        "rangeNote": { "type": "string", "maxLength": 240 },
+        "frameMaterial": { "type": "string", "maxLength": 80 },
+        "brakeSystem": { "type": "string", "maxLength": 120 },
+        "gearSystem": { "type": "string", "maxLength": 120 },
+        "weightKg": { "type": "number" },
+        "warrantyYears": { "type": "number" },
+        "stock": { "type": "number" },
+        "featured": { "type": "boolean" },
+        "isNewArrival": { "type": "boolean" },
+        "isSpecialOffer": { "type": "boolean" },
+        "published": { "type": "boolean" },
+        "ceConformity": { "type": "string", "maxLength": 240 },
+        "manufacturerInfo": { "type": "string", "maxLength": 240 },
+        "safetyNotes": { "type": "string", "maxLength": 400 },
+        "seoTitle": { "type": "string", "maxLength": 120 },
+        "seoDescription": { "type": "string", "maxLength": 220 },
+        "focusKeyword": { "type": "string", "maxLength": 80 },
+        "canonicalUrl": { "type": "string", "maxLength": 240 },
+        "ogImage": { "type": "string", "maxLength": 500 },
+        "imageAlt": { "type": "string", "maxLength": 180 },
+        "ratingAvg": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "isDemoData": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sku", "slug", "name", "brand", "categoryId", "priceEur", "stock", "published"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "Promotional discount code configuration.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "minLength": 3, "maxLength": 40, "pattern": "^[A-Z0-9_-]+$" },
+        "type": { "type": "string", "enum": ["percent", "fixed", "free_shipping"] },
+        "value": { "type": "number" },
+        "minPurchaseEur": { "type": "number" },
+        "startDate": { "type": "string", "maxLength": 40 },
+        "expiryDate": { "type": "string", "maxLength": 40 },
+        "active": { "type": "boolean" },
+        "description": { "type": "string", "maxLength": 200 }
+      },
+      "required": ["code", "type", "value", "active"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer product review linked to a product and author.",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string", "minLength": 2, "maxLength": 120, "pattern": "^[a-zA-Z0-9_-]+$" },
+        "userId": { "type": "string", "minLength": 2, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+        "authorName": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "rating": { "type": "number" },
+        "title": { "type": "string", "minLength": 2, "maxLength": 140 },
+        "comment": { "type": "string", "minLength": 5, "maxLength": 1500 },
+        "verifiedPurchase": { "type": "boolean" },
+        "isDemoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["productId", "userId", "authorName", "rating", "title", "comment"]
+    },
+    "BlogPost": {
+      "title": "BlogPost",
+      "description": "SEO-optimized E-Bike knowledge center article.",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "minLength": 2, "maxLength": 140, "pattern": "^[a-z0-9-]+$" },
+        "title": { "type": "string", "minLength": 5, "maxLength": 180 },
+        "category": { "type": "string", "maxLength": 80 },
+        "excerpt": { "type": "string", "maxLength": 400 },
+        "content": { "type": "string", "maxLength": 16000 },
+        "authorName": { "type": "string", "maxLength": 80 },
+        "authorRole": { "type": "string", "maxLength": 80 },
+        "featuredImage": { "type": "string", "maxLength": 500 },
+        "imageAlt": { "type": "string", "maxLength": 180 },
+        "publishedAt": { "type": "string", "maxLength": 40 },
+        "readingMinutes": { "type": "number" },
+        "seoTitle": { "type": "string", "maxLength": 120 },
+        "seoDescription": { "type": "string", "maxLength": 220 },
+        "focusKeyword": { "type": "string", "maxLength": 80 },
+        "canonicalUrl": { "type": "string", "maxLength": 240 },
+        "published": { "type": "boolean" },
+        "isDemoData": { "type": "boolean" }
+      },
+      "required": ["slug", "title", "category", "excerpt", "content", "published"]
+    },
+    "Faq": {
+      "title": "Faq",
+      "description": "Frequently asked question entry.",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string", "minLength": 5, "maxLength": 240 },
+        "answer": { "type": "string", "minLength": 5, "maxLength": 2000 },
+        "category": { "type": "string", "maxLength": 80 },
+        "sortOrder": { "type": "number" }
+      },
+      "required": ["question", "answer", "category"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Customer testimonial displayed on storefront.",
+      "type": "object",
+      "properties": {
+        "authorName": { "type": "string", "maxLength": 80 },
+        "role": { "type": "string", "maxLength": 80 },
+        "city": { "type": "string", "maxLength": 80 },
+        "quote": { "type": "string", "maxLength": 600 },
+        "bikeModel": { "type": "string", "maxLength": 100 },
+        "rating": { "type": "number" },
+        "isDemoData": { "type": "boolean" }
+      },
+      "required": ["authorName", "city", "quote", "rating"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private customer profile containing PII, saved German delivery addresses, and wishlist.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 2, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+        "email": { "type": "string", "maxLength": 160 },
+        "displayName": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "addresses": { "type": "array" },
+        "wishlist": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Trusted administrator role lookup document.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 2, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+        "email": { "type": "string", "maxLength": 160 },
+        "grantedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order with payment verification state and German shipping details.",
+      "type": "object",
+      "properties": {
+        "orderNumber": { "type": "string", "minLength": 4, "maxLength": 40 },
+        "userId": { "type": "string", "minLength": 2, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+        "customerEmail": { "type": "string", "maxLength": 160 },
+        "customerName": { "type": "string", "maxLength": 140 },
+        "customerPhone": { "type": "string", "maxLength": 40 },
+        "shippingAddress": { "type": "object" },
+        "billingAddress": { "type": "object" },
+        "deliveryInstructions": { "type": "string", "maxLength": 400 },
+        "items": { "type": "array" },
+        "subtotalEur": { "type": "number" },
+        "discountCode": { "type": "string", "maxLength": 40 },
+        "discountEur": { "type": "number" },
+        "shippingEur": { "type": "number" },
+        "totalEur": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["card", "paypal", "klarna", "sepa", "bank_transfer"] },
+        "paymentProvider": { "type": "string", "maxLength": 40 },
+        "paymentIntentId": { "type": "string", "maxLength": 120 },
+        "paymentStatus": { "type": "string", "enum": ["pending", "verified", "failed", "refunded"] },
+        "orderStatus": { "type": "string", "enum": ["pending", "processing", "paid", "shipped", "delivered", "cancelled", "refunded"] },
+        "trackingNumber": { "type": "string", "maxLength": 80 },
+        "shippingCarrier": { "type": "string", "maxLength": 80 },
+        "returnRequested": { "type": "boolean" },
+        "returnReason": { "type": "string", "maxLength": 400 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["orderNumber", "userId", "customerEmail", "customerName", "items", "totalEur", "paymentMethod", "paymentStatus", "orderStatus"]
+    },
+    "Enquiry": {
+      "title": "Enquiry",
+      "description": "Customer contact enquiry, stock notification request, or newsletter subscription.",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["contact", "stock_alert", "newsletter"] },
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 120 },
+        "email": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "subject": { "type": "string", "maxLength": 180 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "productId": { "type": "string", "maxLength": 120 },
+        "productName": { "type": "string", "maxLength": 140 },
+        "status": { "type": "string", "enum": ["new", "replied", "closed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["type", "email", "status"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Administrative action audit log entry.",
+      "type": "object",
+      "properties": {
+        "adminUid": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "adminEmail": { "type": "string", "maxLength": 160 },
+        "action": { "type": "string", "maxLength": 80 },
+        "targetCollection": { "type": "string", "maxLength": 60 },
+        "targetId": { "type": "string", "maxLength": 120 },
+        "summary": { "type": "string", "maxLength": 300 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["adminUid", "action", "targetCollection", "summary"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/SiteSettings" },
+      "description": "Global storefront and SEO configuration."
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/Category" },
+      "description": "E-Bike categories."
+    },
+    "/brands/{brandId}": {
+      "schema": { "$ref": "#/entities/Brand" },
+      "description": "E-Bike manufacturers and brands."
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "E-Bike product catalog."
+    },
+    "/coupons/{couponId}": {
+      "schema": { "$ref": "#/entities/Coupon" },
+      "description": "Promotional discount coupons."
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/Review" },
+      "description": "Customer product reviews."
+    },
+    "/blogPosts/{postId}": {
+      "schema": { "$ref": "#/entities/BlogPost" },
+      "description": "SEO E-Bike knowledge center articles."
+    },
+    "/faqs/{faqId}": {
+      "schema": { "$ref": "#/entities/Faq" },
+      "description": "Frequently asked questions."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": { "$ref": "#/entities/Testimonial" },
+      "description": "Customer testimonials."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private customer accounts, addresses, and wishlists."
+    },
+    "/admins/{userId}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Admin role assignment documents."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders and fulfillment tracking."
+    },
+    "/enquiries/{enquiryId}": {
+      "schema": { "$ref": "#/entities/Enquiry" },
+      "description": "Contact enquiries, stock alerts, and newsletter subscriptions."
+    },
+    "/auditLogs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Administrative audit trail."
+    }
+  }
+}
